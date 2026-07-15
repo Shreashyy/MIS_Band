@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Band | The School Band</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Google Fonts: Cormorant Garamond (display) + DM Sans (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ===================== CUSTOM CURSOR ===================== -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-trail" id="cursor-trail"></div>
+
+  <!-- ===================== PRELOADER ===================== -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-inner">
+      <svg class="preloader-logo" viewBox="0 0 64 64" fill="none">
+        <circle cx="32" cy="32" r="30" stroke="#B8922A" stroke-width="1.5"/>
+        <text x="50%" y="56%" text-anchor="middle" fill="#B8922A"
+              font-family="Cormorant Garamond" font-size="24" font-style="italic">R</text>
+      </svg>
+      <div class="preloader-bar">
+        <div class="preloader-fill" id="preloader-fill"></div>
+      </div>
+      <p class="preloader-label">Tuning up…</p>
+    </div>
+  </div>
+
+  <!-- ===================== SCROLL PROGRESS BAR ===================== -->
+  <div class="progress-bar" id="progress-bar"></div>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">
+      <svg viewBox="0 0 40 40" fill="none" width="36" height="36">
+        <circle cx="20" cy="20" r="18" stroke="#B8922A" stroke-width="1.2"/>
+        <text x="50%" y="56%" text-anchor="middle" fill="#B8922A"
+              font-family="Cormorant Garamond" font-size="18" font-style="italic">R</text>
+      </svg>
+      <span>Band</span>
+    </div>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#about"        class="nav-link">About</a></li>
+      <li><a href="#members"      class="nav-link">Members</a></li>
+      <li><a href="#performances" class="nav-link">Performances</a></li>
+      <li><a href="#gallery"      class="nav-link">Gallery</a></li>
+      <li><a href="#contact"      class="nav-link">Contact</a></li>
+    </ul>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <!--
+    ╔══════════════════════════════════════════════════════════════╗
+    ║  HERO BACKGROUND IMAGE — HOW TO REPLACE                     ║
+    ║                                                              ║
+    ║  Option A — CSS background (recommended):                    ║
+    ║    Open styles.css → find ".hero-bg-image" → change the     ║
+    ║    background-image property to your photo URL or path:      ║
+    ║      background-image: url('your-band-photo.jpg');           ║
+    ║                                                              ║
+    ║  Option B — HTML <img> tag:                                  ║
+    ║    Replace the <div class="hero-bg-image"> below with:       ║
+    ║      <img src="your-band-photo.jpg"                          ║
+    ║           alt="Westbrook School Band"                        ║
+    ║           class="hero-bg-image hero-bg-img-tag" />           ║
+    ║    Then add this to styles.css:                              ║
+    ║      .hero-bg-img-tag {                                      ║
+    ║        position:absolute; inset:0; width:100%;               ║
+    ║        height:100%; object-fit:cover; z-index:0;             ║
+    ║      }                                                       ║
+    ║                                                              ║
+    ║  Recommended photo: wide landscape, band on stage or         ║
+    ║  outdoor, well-lit. Minimum size: 1920×1080 px.              ║
+    ╚══════════════════════════════════════════════════════════════╝
+  -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+
+      <!-- ▼▼▼ REPLACE THIS DIV WITH YOUR BAND PHOTO (see comment above) ▼▼▼ -->
+      <div class="hero-bg-image">
+        <!--
+          PLACEHOLDER — this SVG simulates your band photo.
+          Delete everything inside this div and replace with:
+            <img src="your-photo.jpg" alt="Band" style="width:100%;height:100%;object-fit:cover;" />
+          OR set background-image in .hero-bg-image in styles.css
+        -->
+        <svg viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg"
+             width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <radialGradient id="stage-light" cx="50%" cy="60%" r="70%">
+              <stop offset="0%"   stop-color="#e8d5a0" stop-opacity="0.6"/>
+              <stop offset="60%"  stop-color="#c4a46b" stop-opacity="0.25"/>
+              <stop offset="100%" stop-color="#5a3e1b" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="sky-grad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%"  stop-color="#d4bfa0"/>
+              <stop offset="100%" stop-color="#8a6a40"/>
+            </linearGradient>
+          </defs>
+          <!-- warm amber background -->
+          <rect width="1440" height="900" fill="url(#sky-grad)"/>
+          <!-- Stage glow -->
+          <ellipse cx="720" cy="650" rx="700" ry="300" fill="url(#stage-light)"/>
+          <!-- Stage floor -->
+          <rect x="0" y="760" width="1440" height="140" fill="#5a3c1a" opacity="0.5"/>
+          <!-- Curtain left -->
+          <path d="M0 0 Q120 200 80 900 L0 900Z" fill="#7a4e2a" opacity="0.6"/>
+          <!-- Curtain right -->
+          <path d="M1440 0 Q1320 200 1360 900 L1440 900Z" fill="#7a4e2a" opacity="0.6"/>
+          <!-- Silhouette musicians -->
+          <!-- Musician row -->
+          <g fill="#3a2810" opacity="0.85">
+            <!-- Violin 1 -->
+            <ellipse cx="200" cy="680" rx="20" ry="20"/><rect x="183" y="700" width="34" height="70" rx="4"/>
+            <line x1="217" y1="700" x2="255" y2="665" stroke="#3a2810" stroke-width="6" stroke-linecap="round"/>
+            <!-- Violin 2 -->
+            <ellipse cx="340" cy="675" rx="19" ry="19"/><rect x="323" y="694" width="34" height="72" rx="4"/>
+            <line x1="357" y1="694" x2="390" y2="662" stroke="#3a2810" stroke-width="6" stroke-linecap="round"/>
+            <!-- Cello -->
+            <ellipse cx="480" cy="670" rx="20" ry="20"/><rect x="461" y="690" width="38" height="80" rx="4"/>
+            <rect x="493" y="640" width="12" height="75" rx="4" transform="rotate(5 493 640)"/>
+            <!-- Clarinet -->
+            <ellipse cx="620" cy="672" rx="19" ry="19"/><rect x="603" y="691" width="32" height="70" rx="4"/>
+            <rect x="630" y="652" width="6" height="65" rx="3"/>
+            <!-- Conductor (elevated) -->
+            <ellipse cx="720" cy="620" rx="22" ry="22"/><rect x="699" y="642" width="42" height="80" rx="5"/>
+            <line x1="741" y1="648" x2="790" y2="605" stroke="#3a2810" stroke-width="7" stroke-linecap="round"/>
+            <line x1="790" y1="605" x2="830" y2="572" stroke="#c9a84c" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+            <!-- Trumpet -->
+            <ellipse cx="860" cy="672" rx="19" ry="19"/><rect x="843" y="691" width="34" height="70" rx="4"/>
+            <path d="M877 698 Q920 685 915 710 Q910 730 895 732" stroke="#3a2810" stroke-width="8" fill="none" stroke-linecap="round"/>
+            <!-- French horn -->
+            <ellipse cx="1000" cy="675" rx="20" ry="20"/><rect x="982" y="695" width="36" height="68" rx="4"/>
+            <circle cx="1045" cy="690" r="22" fill="none" stroke="#3a2810" stroke-width="10"/>
+            <!-- Trombone -->
+            <ellipse cx="1150" cy="670" rx="19" ry="19"/><rect x="1133" y="689" width="34" height="72" rx="4"/>
+            <rect x="1167" y="675" width="70" height="12" rx="6" transform="rotate(-8 1167 675)"/>
+            <!-- Double bass -->
+            <ellipse cx="1280" cy="668" rx="21" ry="21"/><rect x="1261" y="689" width="38" height="78" rx="4"/>
+            <rect x="1291" y="635" width="13" height="80" rx="4" transform="rotate(4 1291 635)"/>
+          </g>
+          <!-- Spotlight beams -->
+          <polygon points="720,0 580,760 860,760" fill="white" opacity="0.04"/>
+          <polygon points="350,0 200,760 500,760" fill="white" opacity="0.03"/>
+          <polygon points="1100,0 950,760 1250,760" fill="white" opacity="0.03"/>
+        </svg>
+      </div>
+      <!-- ▲▲▲ END OF PLACEHOLDER ▲▲▲ -->
+
+      <!-- Light tinted overlay — adjust opacity in styles.css (.hero-overlay) -->
+      <div class="hero-overlay"></div>
+
+      <!-- Floating music notes -->
+      <div class="notes-container" id="notes-container"></div>
+    </div>
+
+    <!-- Hero text content box -->
+    <div class="hero-content">
+      <div class="hero-overlay-box">
+        <p class="hero-eyebrow">Website made and designed by Shreash Bhardwaj the goat</p>
+        <h1 class="hero-title">MYP4 band</h1>
+        <div class="hero-divider">
+          <span></span><svg viewBox="0 0 24 24" width="18" height="18"><text x="50%" y="75%" text-anchor="middle" font-size="16" fill="#B8922A">♪</text></svg><span></span>
+        </div>
+        <p class="hero-tagline"><em>Where silence becomes sound, and sound becomes soul. Mr arav garg transformed simple human beings into people who make generational music.</em></p>
+        <p class="hero-intro">
+          Forged in 2025, this band marches with power, precision, and pride. Led by Band Master Arav Garg and powered by Krish, Chae, Kevin, Kana, Anaya, and Ajay, they don’t just perform—they make an entrance. Every beat carries energy, discipline, and unstoppable spirit. This is more than a school band—this is a movement.
+
+        </p>
+        <div class="hero-cta-group">
+          <a href="#performances" class="btn btn-gold">Our Performances</a>
+          <a href="#about"        class="btn btn-outline">Discover Our Story</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <div class="scroll-line"><div class="scroll-line-fill"></div></div>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+<section class="section about-section" id="about" style="background:linear-gradient(135deg,rgba(250,247,242,.78),rgba(230,215,185,.70)),url('20260402_080036.jpg') center/cover no-repeat;">
+
+    <div class="section-inner">
+      <div class="about-grid">
+
+        <div class="about-text" data-animate="fade-up">
+          <p class="section-label">Our Story</p>
+          <h2 class="section-title">More Than Music.<br/><em>A Movement.</em></h2>
+          <p class="about-body">
+            Founded in 2025, the school band has rapidly grown into a proud symbol of rhythm, discipline, and school spirit. Led by Band Master Arav Garg, the band showcases passion and teamwork through every performance. With talented members Krish, Chae, Kevin, Kana, Anaya, and Ajay, the ensemble brings energy and dedication to every event. United by a shared love for music, the band has created a strong identity within the school community, inspiring others through creativity and commitment. As a dynamic and growing group, the school band continues to set the stage for excellence and memorable performances in the years to come.
+
+          </p>
+          <p class="about-body">
+            We believe music is a language that transcends boundaries. Every rehearsal,
+            every note, every performance is a step toward building a community bound
+            by creativity, discipline, and the joy of shared expression.
+          </p>
+          <div class="about-quote">
+            <blockquote>
+              "Music gives a soul to the universe, wings to the mind, flight to the
+              imagination, and life to everything."
+            </blockquote>
+            <cite>— Arav Garg</cite>
+          </div>
+        </div>
+
+        <div class="about-stats" data-animate="fade-left">
+          <div class="stat-card">
+            <div class="stat-number" data-target="15">0</div>
+            <div class="stat-label">Songs performed</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" data-target="7">0</div>
+            <div class="stat-label">Active Musicians</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" data-target="250">0</div>
+            <div class="stat-label">Fans</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" data-target="1">0</div>
+            <div class="stat-label">Places performed</div>
+          </div>
+          <!-- Decorative music staff -->
+          <div class="stat-deco" aria-hidden="true">
+            <svg viewBox="0 0 200 130" fill="none">
+              <line x1="0" y1="30"  x2="200" y2="30"  stroke="#B8922A" stroke-width="1" opacity="0.3"/>
+              <line x1="0" y1="50"  x2="200" y2="50"  stroke="#B8922A" stroke-width="1" opacity="0.3"/>
+              <line x1="0" y1="70"  x2="200" y2="70"  stroke="#B8922A" stroke-width="1" opacity="0.3"/>
+              <line x1="0" y1="90"  x2="200" y2="90"  stroke="#B8922A" stroke-width="1" opacity="0.3"/>
+              <line x1="0" y1="110" x2="200" y2="110" stroke="#B8922A" stroke-width="1" opacity="0.3"/>
+              <path d="M100 20 Q130 42 110 67 Q90 92 115 108" stroke="#B8922A" stroke-width="2" fill="none" opacity="0.4"/>
+              <circle cx="100" cy="112" r="5" fill="#B8922A" opacity="0.4"/>
+            </svg>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MEMBERS ===================== -->
+  <section class="section members-section" id="members">
+    <div class="section-inner">
+
+      <div class="section-header" data-animate="fade-up">
+        <p class="section-label">The band</p>
+        <h2 class="section-title">Meet the <em>members</em></h2>
+        <p class="section-subtitle">
+          Talented individuals.<br/>
+          <strong>Click any card</strong> to learn more about each person.
+        </p>
+      </div>
+
+      <div class="members-filter" data-animate="fade-up">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="strings">Guitars</button>
+        <button class="filter-btn" data-filter="drums">Drums</button>
+        <button class="filter-btn" data-filter="keyboard">Keyboard</button>
+        <button class="filter-btn" data-filter="Singer">Singer</button>
+      </div>
+
+      <!-- Member cards injected by JS -->
+      <div class="members-grid" id="members-grid"></div>
+    </div>
+  </section>
+
+  <!-- ===================== MEMBER MODAL ===================== -->
+  <div class="member-modal-backdrop" id="member-modal-backdrop" role="dialog" aria-modal="true" aria-label="Member details">
+    <div class="member-modal" id="member-modal">
+      <button class="modal-close" id="modal-close" aria-label="Close">&#10005;</button>
+      <!-- Modal content injected by JS -->
+      <div class="modal-body" id="modal-body"></div>
+    </div>  
+  </div>
+
+  <!-- ===================== PERFORMANCES ===================== -->
+  <section class="section performances-section" id="performances">
+    <div class="perf-bg-text" aria-hidden="true">PERFORM</div>
+    <div class="section-inner">
+      <div class="section-header" data-animate="fade-up">
+        <p class="section-label">On Stage</p>
+        <h2 class="section-title">Our <em>Performances</em></h2>
+        <p class="section-subtitle">A year of music, emotion, and unforgettable moments.</p>
+      </div>
+      <!-- Timeline injected by JS -->
+      <div class="performances-timeline" id="performances-timeline"></div>
+    </div>
+  </section>
+
+  <!-- ===================== GALLERY ===================== -->
+  <section class="section gallery-section" id="gallery">
+    <div class="section-inner">
+      <div class="section-header" data-animate="fade-up">
+        <p class="section-label">Captured Moments</p>
+        <h2 class="section-title">The <em>Gallery</em></h2>
+        <p class="section-subtitle">Glimpses of rehearsals, performances, and backstage life.</p>
+      </div>
+      <!-- Gallery grid injected by JS -->
+      <div class="gallery-grid" id="gallery-grid"></div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+      <button class="lightbox-close" id="lightbox-close">&#10005;</button>
+      <button class="lightbox-prev"  id="lightbox-prev">&#8249;</button>
+      <button class="lightbox-next"  id="lightbox-next">&#8250;</button>
+      <div class="lightbox-content"  id="lightbox-content"></div>
+      <div class="lightbox-caption"  id="lightbox-caption"></div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section class="section contact-section" id="contact">
+    <div class="section-inner">
+      <div class="contact-grid">
+
+        <div class="contact-info" data-animate="fade-up">
+          <p class="section-label">Get In Touch</p>
+          <h2 class="section-title">Let's <em>Connect</em></h2>
+          <p class="contact-body">
+            Interested in booking us, joining the band, or learning about
+            our programmes? We'd love to hear from you.
+          </p>
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                  <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <strong>Location</strong>
+                <span>Hinjewadi Phase 1, Pune</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <div>
+                <strong>Email</strong>
+                <span>aravgarg@misp.org</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                </svg>
+              </div>
+              <div>
+                <strong>Phone</strong>
+                <span>390-24-2034</span>
+              </div>
+            </div>
+          </div>
+          <div class="social-links">
+            <a href="#" class="social-btn" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="2" y="2" width="20" height="20" rx="5"/>
+                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58z"/>
+                <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/>
+              </svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-form-wrap" data-animate="fade-left">
+          <form class="contact-form" id="contact-form" novalidate>
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+              <span class="field-line"></span>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="jane@email.com" required />
+              <span class="field-line"></span>
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject" placeholder="Concert Booking / Inquiry" required />
+              <span class="field-line"></span>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" placeholder="Tell us more…" required></textarea>
+              <span class="field-line"></span>
+            </div>
+            <button type="submit" class="btn btn-gold form-submit">
+              <span class="btn-text">Send Message</span>
+              <span class="btn-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="5" y1="12" x2="19" y2="12"/>
+                  <polyline points="12 5 19 12 12 19"/>
+                </svg>
+              </span>
+            </button>
+            <div class="form-success" id="form-success">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#B8922A" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span>Message sent! We'll be in touch soon.</span>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <svg viewBox="0 0 40 40" fill="none" width="30" height="30">
+          <circle cx="20" cy="20" r="18" stroke="#B8922A" stroke-width="1.2"/>
+          <text x="50%" y="56%" text-anchor="middle" fill="#B8922A"
+                font-family="Cormorant Garamond" font-size="18" font-style="italic">R</text>
+        </svg>
+        <span>School Band</span>
+      </div>
+      <p class="footer-tagline"><em>Where silence becomes sound.</em></p>
+      
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
